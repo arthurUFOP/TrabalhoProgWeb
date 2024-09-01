@@ -1,0 +1,50 @@
+.navbar {
+    overflow: hidden;
+    display: flex;
+    width: 100vw;
+    height: 8vh;
+    background-color: #a69574;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    border: 3px solid black;
+}
+
+.navbar h1 {
+    margin-right: 20px;
+}
+
+.navbar h1:hover {
+    cursor: pointer;
+}
+
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    align-items: center;
+}
+
+.logo:hover {
+    cursor: pointer;
+}
+
+.logo img {
+    height: 100%;
+}
+
+.logo h1 {
+    margin: 0;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: black;
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        font-size: 80%;
+    }
+}

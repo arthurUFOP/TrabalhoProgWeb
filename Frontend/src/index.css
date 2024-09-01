@@ -1,0 +1,13 @@
+body {
+    overflow: hidden;
+    margin: 0;
+    font-family: 'Open Sans';
+}
+
+@media (max-width: 800px) {
+    body {
+        overflow: scroll;
+        margin: 0;
+        font-family: 'Open Sans';
+    }
+}
