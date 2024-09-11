@@ -9,7 +9,7 @@ export default () => {
     const navigate = useNavigate();
     const [queryParams, setQueryParams] = useState({});
     const [isFiltering, setIsFiltering] = useState(false);
-    
+
     const handleSubmit = () => {
         console.log("Realizando requisições...");
         console.log(queryParams);
@@ -81,8 +81,8 @@ export default () => {
                     <h1>Publicações</h1>
                 </header>
                 <FilterField displayName="Data:" name="date" type="date"></FilterField>
-                <FilterField placeholder="Palavra 1, Palavra 2, ..." displayName="Palavras-chave:" name="keywords" type="text"></FilterField>
-                <FilterField placeholder="Idioma 1, Idioma 2, ..." displayName="Idiomas:" name="idioms" type="text"></FilterField>
+                <FilterField placeholder="Palavra1,Palavra2, ..." displayName="Palavras-chave:" name="keywords" type="text"></FilterField>
+                <FilterField placeholder="Idioma1,Idioma2, ..." displayName="Idiomas:" name="idioms" type="text"></FilterField>
             </div>
 
             <div className='filterScreen'>
@@ -93,7 +93,7 @@ export default () => {
                 <FilterField displayName="Índice H: " name="h-index" type="number"></FilterField>
                 <FilterField displayName="Trabalhos: " name="works" type="number"></FilterField>
                 <FilterField displayName="Citações: " name="citations" type="number"></FilterField>
-                <FilterField placeholder="BR, US" displayName="País: " name="country" type="text"></FilterField>
+                <FilterField placeholder="BR,US" displayName="País: " name="country" type="text"></FilterField>
             </div>
         </div>
         </>
@@ -110,7 +110,7 @@ export default () => {
             <form onSubmit={handleSubmit} onKeyDown={(event) => {if (event.which === 13) {event.preventDefault(); handleSubmit();}}}> 
                 <textarea id='searchArea' rows="4" placeholder="Pesquise nos SingerFiles"></textarea>
             </form>
-            <h2>Que tal <a href='/pesquisa'>Winchester?</a></h2>
+            <h2>Que tal <a href='/pesquisa?texto=Winchester'>Winchester?</a></h2>
             <FilterButton></FilterButton>
         </div>
         </>
