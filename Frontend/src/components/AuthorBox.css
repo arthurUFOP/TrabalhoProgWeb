@@ -1,0 +1,54 @@
+.author-box {
+    width: 80%;
+    margin: 5px;
+    text-align: justify;
+    display: flex;
+    flex-direction: row;
+}
+
+.author-box:hover {
+    background-color: #A69574;
+    cursor: pointer;
+}
+
+.author-box img {
+    width: 30%;
+    border: 4px solid black;
+}
+
+.author-box a {
+    text-decoration: none;
+    color: black;
+}
+
+.author-info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 3%;
+}
+
+.author-info b {
+    font-size: 2rem;
+}
+
+@media (max-width: 800px) {
+
+    .author-box img {
+        height: 20%;
+        border: 4px solid black;
+        margin-top: 5%;
+    }
+
+    .author-box {
+        width: 80%;
+        margin: 5px;
+        text-align: justify;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #a69574;
+        border: 3px solid black;
+    }
+
+}

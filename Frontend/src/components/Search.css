@@ -42,48 +42,6 @@
     width: 50%;
 }
 
-.work-box {
-    border: 4px solid black;
-    width: 80%;
-    margin: 5px;
-    background-color: #a69574;
-    text-align: center;
-}
-
-.work-box a {
-    text-decoration: none;
-    color: black;
-}
-
-.author-box {
-    width: 80%;
-    margin: 5px;
-    text-align: justify;
-    display: flex;
-    flex-direction: row;
-}
-
-.author-box img {
-    width: 30%;
-    border: 4px solid black;
-}
-
-.author-box a {
-    text-decoration: none;
-    color: black;
-}
-
-.author-info {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-left: 3%;
-}
-
-.author-info b {
-    font-size: 2rem;
-}
-
 @media (max-width: 800px) {
     .search {
         display: flex;

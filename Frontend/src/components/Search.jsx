@@ -1,10 +1,10 @@
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import "./Search.css"
 import { useEffect, useState } from "react";
 import Navbar from './Navbar';
 import bobby from '../assets/bobby.png'
-import sam from '../assets/SAM.png'
-import dean from '../assets/DEAN.png'
+import WorkBox from "./WorkBox";
+import AuthorBox from "./AuthorBox";
 
 export default () => {
 
@@ -29,6 +29,13 @@ export default () => {
     const [authorData, setAuthorData] = useState([]);
     const [worksData, setWorksData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+
+    function handleRedirect(openAlexId) {
+        const splitted = openAlexId.split("/");
+        const id = splitted[splitted.length-1];
+        navigate(`/autor/${id}`);
+    }
 
     function makeAuthorUrl() {
         let author_url = "https://api.openalex.org/authors?search="+queryParams.get('texto')+"&filter=";
@@ -126,68 +133,29 @@ export default () => {
 
     useEffect(() => {makeSearch();}, []);
 
-    const WorkBox = (props) => {
-        
-        const data = props.data;
-
-        return (
-            <div className="work-box">
-                <a href={data.doi ? data.doi : data.id}>
-                    <h3>{data.title}</h3>
-                    {data.authorships[0] ? <p>{data.authorships[0].author.display_name}{data.authorships.length > 1 ? " et al." : ""}</p> : ""}
-                </a>
-            </div>
-        );
-    }
-
-    const AuthorBox = (props) => {
-        const data = props.data;
-
-        return (
-            <div className="author-box">
-                    {data.summary_stats.h_index < 15 ? <img src={dean} alt="Uma imagem do Dean Winchester de Supernatural" className="author-photo"></img> :
-                     data.summary_stats.h_index < 35 ? <img src={sam} alt="Uma imagem do Sam Winchester de Supernatural" className="author-photo"></img> :
-                     <img src={bobby} alt="Uma imagem do Bobby Singer de Supernatural" className="author-photo"></img>
-                    }
-                <div className="author-info">
-                    <p>
-                        <b>{data.display_name}</b>
-                        <br></br>
-                        {data.last_known_institutions[0] ? <i>{data.last_known_institutions[0].display_name} - {data.last_known_institutions[0].country_code}</i> : ""}
-                        <br></br>
-                        Número de Trabalhos: {data.works_count}
-                        <br></br>
-                        Citado por: {data.cited_by_count}
-                        <br></br>
-                        Índice-H: {data.summary_stats.h_index}
-                    </p>
-                </div>
-            </div>
-        );
-    }
-
     return (
         <>
         <Navbar></Navbar>
         <div className="search">
             {
             loading ? 
+            
             <img src={bobby} alt="Uma imagem do Bobby Singer de Supernatural" className="loading"></img> : 
-            <> 
-            <section className="result-container" id="works">
-                <h1>Publicações</h1>
-                {worksData.map((data) => {
-                    return <WorkBox key={data.id} data={data}></WorkBox>
-                })}
-            </section>
 
-            <section className="result-container" id="authors">
-                <h1>Autores</h1>
-                {authorData.map((data) => {
-                    return <AuthorBox key={data.id} data={data}></AuthorBox>
-                })}
-                
-            </section>
+            <> 
+                <section className="result-container" id="works">
+                    <h1>Publicações</h1>
+                    {worksData.map((data) => {
+                        return <WorkBox key={data.id} data={data}></WorkBox>
+                    })}
+                </section>
+
+                <section className="result-container" id="authors">
+                    <h1>Autores</h1>
+                    {authorData.map((data) => {
+                        return <AuthorBox key={data.id} data={data}></AuthorBox>
+                    })}
+                </section>
             </>
             }
         </div>

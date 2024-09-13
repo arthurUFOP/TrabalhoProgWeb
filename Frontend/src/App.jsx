@@ -1,9 +1,9 @@
-import { useState } from 'react'
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import './App.css'
-import Home from './components/Home'
+import './App.css';
+import Home from './components/Home';
 import About from './components/About';
-import Search from './components/Search'
+import Search from './components/Search';
+import Author from './components/Author';
 
 function App() {
   return (
@@ -12,6 +12,7 @@ function App() {
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/sobre' element={<About></About>}></Route>
         <Route path='/pesquisa' element={<Search></Search>}></Route>
+        <Route path='/autor/:authorId' element={<Author></Author>}></Route>
       </Routes>
     </Router>
   );
