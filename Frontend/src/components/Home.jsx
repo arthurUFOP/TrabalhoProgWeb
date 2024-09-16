@@ -11,8 +11,6 @@ export default () => {
     const [isFiltering, setIsFiltering] = useState(false);
 
     const handleSubmit = () => {
-        console.log("Realizando requisições...");
-        console.log(queryParams);
         const textarea = document.querySelector('#searchArea');
         let qString = `/pesquisa?texto=${textarea.value}`
 
@@ -22,7 +20,7 @@ export default () => {
             }
         }
 
-        navigate(qString); // Tenho que adicionar os filtros depois
+        navigate(qString);
     }
 
     // Botao de filtro
@@ -81,8 +79,8 @@ export default () => {
                     <h1>Publicações</h1>
                 </header>
                 <FilterField displayName="Data:" name="date" type="date"></FilterField>
-                <FilterField placeholder="Palavra1,Palavra2, ..." displayName="Palavras-chave:" name="keywords" type="text"></FilterField>
-                <FilterField placeholder="Idioma1,Idioma2, ..." displayName="Idiomas:" name="idioms" type="text"></FilterField>
+                <FilterField placeholder="Palavra1, Palavra2, ..." displayName="Palavras-chave:" name="keywords" type="text"></FilterField>
+                <FilterField placeholder="Ex.: PT, EN, ..." displayName="Idiomas:" name="idioms" type="text"></FilterField>
             </div>
 
             <div className='filterScreen'>
@@ -93,7 +91,7 @@ export default () => {
                 <FilterField displayName="Índice H: " name="h-index" type="number"></FilterField>
                 <FilterField displayName="Trabalhos: " name="works" type="number"></FilterField>
                 <FilterField displayName="Citações: " name="citations" type="number"></FilterField>
-                <FilterField placeholder="BR,US" displayName="País: " name="country" type="text"></FilterField>
+                <FilterField placeholder="Ex.: BR, US, ..." displayName="País: " name="country" type="text"></FilterField>
             </div>
         </div>
         </>

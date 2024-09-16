@@ -74,9 +74,6 @@ export default () => {
             citIdx--;
         }
 
-        console.log(coAuthorsCount);
-        console.log(Array.from(coAuthorsSet));
-
         setCoAuthorsId(coAuthorsId);
         setCoAuthorData(Array.from(coAuthorsSet).splice(0, maxTopics));
 

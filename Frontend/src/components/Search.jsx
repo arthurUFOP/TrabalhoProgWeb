@@ -29,13 +29,6 @@ export default () => {
     const [authorData, setAuthorData] = useState([]);
     const [worksData, setWorksData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
-
-    function handleRedirect(openAlexId) {
-        const splitted = openAlexId.split("/");
-        const id = splitted[splitted.length-1];
-        navigate(`/autor/${id}`);
-    }
 
     function makeAuthorUrl() {
         let author_url = "https://api.openalex.org/authors?search="+queryParams.get('texto')+"&filter=";
@@ -49,8 +42,11 @@ export default () => {
 
         if (queryParams.get("country")) {
             let countryList = queryParams.get("country");
+            if (!countryList.includes(","))
+                countryList += ","
+
             countryList = countryList.replace(/ /g, '').split(",");
-            author_url += "affiliations.institution.country_code:";
+            author_url += "last_known_institutions.country_code:";
             for (let i=0; i<countryList.length-1; i++) {
                 author_url += `${countryList[i]}|`
             }
@@ -83,6 +79,9 @@ export default () => {
 
         if (queryParams.get("keywords")) {
             let keywords = queryParams.get("keywords");
+            if (!keywords.includes(","))
+                keywords += ","
+
             keywords = keywords.split(",");
             works_url += "keyword.search:";
             for (let i=0; i<keywords.length-1; i++) {
@@ -93,6 +92,9 @@ export default () => {
 
         if (queryParams.get("idioms")) {
             let idiomsList = queryParams.get("idioms");
+            if (!idiomsList.includes(","))
+                idiomsList += ","
+
             idiomsList = idiomsList.replace(/ /g, '').split(",");
             works_url += "language:";
             for (let i=0; i<idiomsList.length-1; i++) {
@@ -144,14 +146,14 @@ export default () => {
 
             <> 
                 <section className="result-container" id="works">
-                    <h1>Publicações</h1>
+                    {worksData.length > 0 ? <h1>Publicações</h1> : <h2>Não foram encontradas publicações</h2>}
                     {worksData.map((data) => {
                         return <WorkBox key={data.id} data={data}></WorkBox>
                     })}
                 </section>
 
                 <section className="result-container" id="authors">
-                    <h1>Autores</h1>
+                    {authorData.length > 0 ? <h1>Autores</h1> : <h2>Não foram encontrados autores</h2>}
                     {authorData.map((data) => {
                         return <AuthorBox key={data.id} data={data}></AuthorBox>
                     })}
