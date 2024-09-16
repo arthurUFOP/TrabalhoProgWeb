@@ -95,6 +95,16 @@ export default () => {
         <div className="searched-author">
             <section id="author-profile" className="author-container">
                 <AuthorBox data={authorData}></AuthorBox>
+                <div id="affiliations" className="topics">
+                    <h2>Instituições</h2>
+                    {authorData.affiliations.slice(0, maxTopics).map((topic) => {
+                        return (
+                            <div key={topic.institution.id} className="topic-container">
+                                <a href={topic.institution.id}><b>{topic.institution.display_name}</b></a>
+                            </div>
+                        );
+                    })}
+                </div>
                 <div id="interest-topics" className="topics">
                     <h2>Tópicos de Interesse</h2>
                     {authorData.topics.slice(0, maxTopics).map((topic) => {
